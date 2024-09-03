@@ -26,8 +26,7 @@ func (logger *ConsoleLoggerimpl) Write_Request(message string, request string) {
 }
 
 func (logger *ConsoleLoggerimpl) PrintSection(message string) {
-	logger.messages <- message
-	logger.messages <- " : "
+	logger.messages <- message + " : "
 }
 
 func (logger *ConsoleLoggerimpl) PrintSection_DEBUG(message string) {
@@ -63,9 +62,7 @@ func (logger *ConsoleLoggerimpl) WriteErr_DEBUG(err error) (errnum int) {
 }
 
 func (logger *ConsoleLoggerimpl) Write(message string) {
-	logger.PrintDate()
-	logger.messages <- message
-	logger.messages <- "\n"
+	logger.messages <- time.Now().Format(time.UnixDate) + " : " + message + "\n"
 }
 
 func (logger *ConsoleLoggerimpl) Write_DEBUG(message string) {
@@ -75,8 +72,7 @@ func (logger *ConsoleLoggerimpl) Write_DEBUG(message string) {
 }
 
 func (logger *ConsoleLoggerimpl) WriteNoNewLine(message string) {
-	logger.PrintDate()
-	logger.messages <- message
+	logger.messages <- time.Now().Format(time.UnixDate) + " : " + message
 }
 
 func (logger *ConsoleLoggerimpl) WriteNoNewLine_DEBUG(message string) {
